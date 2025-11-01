@@ -1,11 +1,183 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Techtsee - {{title}}</title>
-</head>
-<body>
+{% extends "base.twig" %}
 
-</body>
-</html>
+{% block content %}
+
+<style>
+    .introduction-container {
+        min-height: 600px;
+        display: grid;
+        grid-template-rows: auto max-content;
+        justify-items: center;
+    }
+    .intro-content-layout {
+        display: grid;
+        grid-template-columns: auto min-content;
+        align-items: center;
+        min-height: 550px;
+        width: 100%;
+        gap: 100px;
+    }
+
+    /* TITLE */
+    .intro-content-layout h5 {
+        font-family: Roboto-Regular, sans-serif;
+        font-size: 30px;
+        font-weight: normal;
+        max-width: 590px;
+        color: var(--titleTextColor);
+    }
+    /* PARAGRAPH */
+    .intro-content-layout p {
+        max-width: 550px;
+        font-family: Roboto-Light, sans-serif;
+        font-size: var(--contentFontSize);
+        color: var(--secondaryTextColor);
+    }
+    .tag {
+        font-family: Roboto-Light, sans-serif;
+        font-weight: normal;
+        font-size: 12px;
+        padding: 5px 10px 5px 10px;
+        border-radius: 3px;
+        background-color: #E4E4E4;
+        color: var(--titleTextColor);
+    }
+    /* IMAGE */
+    .intro-image {
+        width: 400px;
+    }
+    /* BUTTON */
+    .intro-button {
+        height: 50px;
+        padding: 0 30px 0 30px;
+        border-radius: var(--borderRadius);
+        background-color: var(--primaryColor);
+        color: white;
+        border: none;
+        transition: 0.2s ease;
+    }
+    .intro-button:hover {
+        padding: 0 40px 0 40px;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+    .intro-button:active {
+        opacity: 0.8;
+        transition: 0.2s ease;
+    }
+
+
+    /* SERVICES */
+    .services-container {
+        padding: var(--sectionPadding);
+        font-size: var(--contentFontSize);
+    }
+    .services-section-title {
+        font-family: Roboto-Light, sans-serif;
+        font-size: var(--contentFontSize);
+        font-weight: normal;
+        justify-self: center;
+        text-align: center;
+        color: var(--titleTextColor);
+        max-width: 270px;
+        margin-bottom: 60px;
+    }
+    /* SERVICES_TABLE */
+    .services-tables-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 100px;
+        row-gap: 50px;
+        align-items: start;
+    }
+    .services-table {
+        width: 100%;
+    }
+    .table-title {
+        text-align: left;
+        font-size: var(--contentFontSize);
+        color: var(--titleTextColor);
+        border-bottom: 1px solid var(--borderColor);
+        font-weight: normal;
+        height: 30px;
+    }
+    .table-row {
+        height: 25px;
+    }
+    .table-item {
+        display: grid;
+        width: 100%;
+        align-self: center;
+        font-family: Roboto-Light, sans-serif;
+        font-size: var(--contentFontSize);
+        color: var(--secondaryTextColor);
+        border-bottom: 1px solid var(--borderColor);
+        font-weight: normal;
+    }
+    .item-price {
+        font-family: Roboto-Regular, sans-serif;
+        color: var(--primaryColor);
+        position: absolute;
+        justify-self: flex-end;
+    }
+</style>
+
+<!-- INTRODUCTION -->
+<div class="introduction-container">
+
+    <div class="intro-content-layout">
+        <!-- PARAGRAPHS -->
+        <div style="display: grid; gap: 20px">
+            <h5 style="margin: 0">
+                Transform your technology and future-proof your business with our
+                <span style="color: var(--primaryColor); font-family: Roboto-Bold, sans-serif">Innovative ICT</span>
+                solutions
+            </h5>
+            <p style="margin: 0">
+                Our mission is to provide clients with exceptional service. In-depth resources & tutorials, a vibrant community, round-the-clock support ensure a seamless experience.
+            </p>
+            <div style="display: flex; gap: 10px">
+                <span class="tag">Computer repair</span>
+                <span class="tag">Camera installation</span>
+                <span class="tag">Website development</span>
+            </div>
+        </div>
+
+        <!-- IMAGE -->
+        <img class="intro-image" alt="introduction" src="./static/images/introduction.png">
+    </div>
+
+    <!-- INTRO_BUTTON -->
+    <button class="intro-button">Explore Shop</button>
+
+    <!-- SECTION_BREAK -->
+    <span style="width: 100%; height: 0; border-bottom: 1px solid var(--borderColor); margin-top: 100px"></span>
+</div>
+
+<!-- SERVICES -->
+<div class="services-container">
+    <h5 class="services-section-title">
+        We offer Microsoft Windows, Microsoft Office Products, licensed Antivirus and Design tools.
+    </h5>
+
+    <!-- SERVICES_TABLE -->
+    <div class="services-tables-container">
+        {% for service in services %}
+            <table class="services-table" aria-label="Details">
+                <tbody>
+                <!-- TITLE -->
+                <th class="table-title">{{service["title"]}}</th>
+                {% for item in service['services'] %}
+                    <tr class="table-row">
+                        <td class="table-item">{{item['title']}}
+                            <span class="item-price">R{{item['price']}}</span>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

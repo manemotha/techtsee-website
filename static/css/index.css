@@ -1,0 +1,93 @@
+:root {
+    /* MARGINS */
+    --desktopMargin: 150px;
+
+    /* PADDINGS */
+    --sectionPadding: 50px;
+
+    /* BORDERS */
+    --borderRadius: 7px;
+
+    /* FONT-SIZES */
+    --contentFontSize: 15px;
+    --titleFontSize: 20px;
+
+    /* COLORS */
+    --borderColor: #E4E4E4;
+    --secondaryTextColor: #757575;
+    --primaryTextColor: #434343;
+    --titleTextColor: #000000;
+    --primaryColor: #2A3FCA;
+}
+
+
+@font-face {
+    font-family: 'Roboto-Regular';
+    font-style: normal;
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url('../fonts/Roboto-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url('../fonts/Roboto-Bold.ttf') format('truetype');
+}
+
+
+html, body {
+    font-family: Roboto-Regular, sans-serif;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+
+/* BASE.twig STYLESHEET */
+.navbar-container {
+    height: 80px;
+    border-bottom: 1px solid var(--borderColor);
+    backdrop-filter: blur(70px);
+    background-color: rgba(255, 255, 255, 0.8);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.navbar-layout {
+    height: 100%;
+    margin-right: var(--desktopMargin);
+    margin-left: var(--desktopMargin);
+    display: grid;
+    grid-template-columns: 100fr max-content;
+    align-content: center;
+}
+.navbar-buttons-layout {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+.trademark {
+    font-size: var(--titleFontSize);
+    font-family: Roboto-Bold, sans-serif;
+    font-weight: normal;
+    color: var(--titleTextColor);
+}
+.navbar-button {
+    font-family: Roboto-Light, sans-serif;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: var(--contentFontSize);
+    color: var(--secondaryTextColor);
+}
+.selected-navbar-button {
+    font-family: Roboto-Bold, sans-serif;
+    color: var(--titleTextColor);
+}
+
+/* CONTENT_AREA */
+.content-area-container {
+    margin-right: var(--desktopMargin);
+    margin-left: var(--desktopMargin);
+}

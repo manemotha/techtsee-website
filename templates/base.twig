@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="./static/favicon.ico">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <title>Techtsee - {{title}}</title>
+</head>
+<body>
+
+<header id="header" class="navbar-container">
+
+    <div class="navbar-layout">
+        <!-- TRADEMARK -->
+        <div>
+            <h5 class="trademark">TECHTSEE</h5>
+        </div>
+
+        <!-- LINK BUTTONS -->
+        <div class="navbar-buttons-layout">
+            <a href="#" id="home-button" class="navbar-button selected-navbar-button">Home</a>
+            <a href="#" id="shop-button" class="navbar-button">Shop</a>
+            <a href="#" id="login-button" class="navbar-button">Login</a>
+        </div>
+    </div>
+
+</header>
+
+
+<main id="main" class="content-area-container">
+
+    {% block content %}
+    <!-- page body content -->
+    {% endblock %}
+
+</main>
+
+
+<footer id="footer">
+
+</footer>
+
+</body>
+</html>
