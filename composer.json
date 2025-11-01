@@ -1,0 +1,20 @@
+{
+  "name": "techtsee/website",
+  "description": "A website for Techtsee, an innovative ICT company that specializes in providing comprehensive support and cutting-edge solutions for infrastructure and computer support.",
+  "require": {
+    "php": "^8.0",
+    "slim/slim": "^4.0",
+    "slim/psr7": "^1.5",
+    "twig/twig": "^3.0",
+    "slim/twig-view": "^3.3",
+    "vlucas/phpdotenv": "^5.4",
+    "doctrine/dbal": "^3.4",
+    "php-di/php-di": "^7.1",
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}
