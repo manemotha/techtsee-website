@@ -93,7 +93,7 @@ return function(App $app) {
         ]);
     });
 
-    $app->get('/shop', function(Request $request, Response $response) {
+    $app->get('/store', function(Request $request, Response $response) {
 
         $products = [
             [
@@ -128,7 +128,7 @@ return function(App $app) {
         ];
 
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'shop.twig', [
+        return $view->render($response, 'store.twig', [
             'title'=>'Shop',
             'URL_BASENAME'=> '/techtsee', // notice...
             'isAuthorized'=>false,
