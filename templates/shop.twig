@@ -1,0 +1,108 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+<style>
+    .shop-container {
+        /*background-color: var(--secondaryBackgroundColor);*/
+        margin-right: var(--desktopMargin);
+        margin-left: var(--desktopMargin);
+        padding-top: var(--sectionPadding);
+        padding-bottom: var(--sectionPadding);
+    }
+
+    /* SEARCHFIELD */
+    .searchfield-container {
+        display: flex;
+        border: 2px solid var(--borderColor);
+        border-radius: var(--borderRadius);
+        align-items: center;
+        background-color: white;
+        padding: 10px;
+        width: max-content;
+        gap: 10px;
+        margin-top: 5px;
+        margin-bottom: var(--sectionPadding);
+    }
+    .searchfield-icon {
+        width: 15px;
+        margin-bottom: 1px;
+    }
+    .searchfield-label {
+        font-size: var(--contentFontSize);
+        color: var(--secondaryTextColor);
+    }
+    .searchfield {
+        outline: none;
+        border: none;
+    }
+    .searchfield-search-button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+    .searchfield-search-button:hover {
+        text-decoration: underline;
+        transition: 0.2s ease;
+    }
+    .searchfield-search-button:active {
+        opacity: 0.5;
+        transition: 0.2s ease;
+    }
+</style>
+
+<div class="shop-container">
+
+    <!-- SEARCH_AREA -->
+    <div>
+        <label class="searchfield-label">Search for a product</label>
+        <form class="searchfield-container">
+            <img alt="Search icon" class="searchfield-icon" src="./static/images/icons/search.png">
+            <input name="searchfield" class="searchfield" type="text" aria-multiline="false" placeholder="Product name">
+            <button type="submit" class="searchfield-search-button" >Search</button>
+        </form>
+    </div>
+
+    <!-- PRODUCTS_CONTAINER -->
+    <div class="products-container">
+
+        {% for product in products %}
+            <div class="product-item-container">
+
+                <div style="display: grid; grid-template-columns: 100fr max-content; align-items: start; height: min-content">
+
+                    <!-- NAME, DESCRIPTION, TAGS -->
+                    <nav>
+                        <h5 class="product-name">{{product['name']}}</h5>
+                        <p class="product-description">{{product['description']}}</p>
+                        <!-- TAGS -->
+                        <nav class="product-tags-container">
+                            {% for tag in product['tags'] %}
+                                <span class="product-tag">{{tag}}</span>
+                            {% endfor %}
+                        </nav>
+                    </nav>
+                    <!-- IMAGE -->
+                    <nav class="product-image-container">
+                        <img class="product-image" src="{{product['image_url']}}" alt="{{product['image_alt']}}">
+                    </nav>
+
+                </div>
+
+                <div style="display: grid; grid-template-columns: max-content max-content; align-items: center; gap: 15px">
+                    <!-- PRICE -->
+                    <h5 class="product-price">R{{product['price']}}</h5>
+                    <!-- BUY_BUTTON -->
+                    <a class="product-buy-button">
+                        Buy
+                    </a>
+                </div>
+
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
