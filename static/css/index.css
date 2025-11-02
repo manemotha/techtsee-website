@@ -38,12 +38,13 @@
 }
 
 
-html, body {
+body {
     font-family: Roboto-Regular, sans-serif;
     background-color: white;
     height: 100%;
     width: 100%;
     margin: 0;
+    overflow: auto;
 }
 
 
@@ -57,13 +58,13 @@ html, body {
 
 /* BASE.twig STYLESHEET */
 .navbar-container {
-    height: 80px;
-    border-bottom: 1px solid var(--borderColor);
-    backdrop-filter: blur(70px);
-    background-color: rgba(255, 255, 255, 0.8);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    height: 60px;
+    border-bottom: 1px solid var(--borderColor);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 .navbar-layout {
     height: 100%;
@@ -79,7 +80,7 @@ html, body {
     align-items: center;
 }
 .trademark {
-    font-size: var(--titleFontSize);
+    font-size: var(--contentFontSize);
     font-family: Roboto-Bold, sans-serif;
     font-weight: normal;
     color: var(--titleTextColor);
