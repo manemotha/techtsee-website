@@ -111,6 +111,25 @@ body {
     font-family: Roboto-Bold, sans-serif;
     color: var(--titleTextColor);
 }
+/* USER LOGIN BUTTON */
+.login-button {
+    background-color: var(--primaryColor);
+    border-radius: var(--borderRadius);
+    display: flex;
+    align-content: center;
+    color: white;
+    font-size: var(--contentFontSize);
+    font-weight: normal;
+    font-family: Roboto-Regular, sans-serif;
+    text-decoration: none;
+    padding: 7px 13px 7px 13px;
+}
+.login-button img {
+    filter: invert();
+    margin-left: 5px;
+    margin-right: -2px;
+    width: 18px;
+}
 
 /* CONTENT_AREA */
 .content-area-container {
