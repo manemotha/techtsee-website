@@ -101,7 +101,7 @@ body {
     color: var(--titleTextColor);
 }
 .navbar-button {
-    font-family: Roboto-Light, sans-serif;
+    font-family: Roboto-Regular, sans-serif;
     text-decoration: none;
     font-weight: normal;
     font-size: var(--contentFontSize);
@@ -135,9 +135,6 @@ body {
     transition: 0.2s ease;
 }
 .product-item-container:hover {
-    .product-name {
-        color: var(--primaryColor);
-    }
     border: 2px solid var(--hoverBorderColor);
     transition: 0.2s ease;
 }
@@ -149,7 +146,7 @@ body {
     margin: 0;
 }
 .product-description {
-    font-family: Roboto-Light, sans-serif;
+    font-family: Roboto-Regular, sans-serif;
     font-weight: normal;
     font-size: var(--contentFontSize);
     color: var(--secondaryTextColor);
@@ -190,28 +187,30 @@ body {
     border-radius: 3px;
     padding: 3px 7px 3px 7px;
     width: max-content;
-    color: var(--secondaryTextColor);
-    background-color: var(--secondaryBackgroundColor);
+    color: white;
+    background-color: var(--titleTextColor);
 }
 .product-price {
     font-family: Roboto-Bold, sans-serif;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 20px;
     margin: 0;
 }
 .product-buy-button {
     display: flex;
     align-items: center;
     height: 35px;
+    font-family: Roboto-Bold, sans-serif;
     border-radius: var(--borderRadius);
     padding: 0 20px 0 20px;
     border: none;
-    background-color: var(--titleTextColor);
+    background-color: var(--primaryColor);
     color: white;
     transition: 0.2s ease;
 }
 .product-buy-button:hover {
     cursor: pointer;
+    text-decoration: underline;
     transition: 0.2s ease;
 }
 .product-buy-button:active {
