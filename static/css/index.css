@@ -218,3 +218,16 @@ body {
     opacity: 0.8;
     transition: 0.2s ease;
 }
+
+
+/* FOOTER */
+#footer {
+    display: grid;
+    grid-template-columns: 100fr max-content;
+    align-items: center;
+    height: 150px;
+    margin: 0 var(--desktopMargin) 0 var(--desktopMargin);
+}
+.social-link-icon {
+    width: 25px;
+}
