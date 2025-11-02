@@ -50,12 +50,15 @@
     }
     /* BUTTON */
     .intro-button {
+        font-size: var(--contentFontSize);
+        text-decoration: none;
+        align-content: center;
+        color: white;
+        border: none;
         height: 50px;
         padding: 0 30px 0 30px;
         border-radius: var(--borderRadius);
         background-color: var(--primaryColor);
-        color: white;
-        border: none;
         transition: 0.2s ease;
     }
     .intro-button:hover {
@@ -167,7 +170,7 @@
     </div>
 
     <!-- INTRO_BUTTON -->
-    <button class="intro-button">Explore Shop</button>
+    <a href="#store" class="intro-button">Explore Store</a>
 
     <!-- SECTION_BREAK -->
     <span style="width: 100%; height: 0; border-bottom: 1px solid var(--borderColor); margin-top: 100px"></span>
@@ -200,57 +203,59 @@
 </div>
 
 <!-- SHOP -->
-<div class="shop-container">
+<section id="store" class="section">
+    <div class="shop-container">
 
-    <!-- MARGIN_LAYOUT -->
-    <div style="margin-right: var(--desktopMargin); margin-left: var(--desktopMargin); padding-top: var(--sectionPadding); padding-bottom: var(--sectionPadding)">
+        <!-- MARGIN_LAYOUT -->
+        <div style="margin-right: var(--desktopMargin); margin-left: var(--desktopMargin); padding-top: var(--sectionPadding); padding-bottom: var(--sectionPadding)">
 
-        <!-- SECTION_TITLE -->
-        <div style="display: grid; grid-template-columns: 100fr max-content; align-items: center">
-            <nav>
-                <h5 class="shop-section-title">
-                    <span style="font-size: var(--titleFontSize); font-weight: normal; font-family: Roboto-Bold, sans-serif">
-                        <img style="width: 20px; margin: 0 2px -1.5px 0" src="./static/images/icons/buy.png">Online Store
-                    </span>
-                    <br>
-                    <br>
-                    Scroll through our most intuitive problem-solving and smart products.
-                </h5>
-            </nav>
-            <a href="{{URL_BASENAME}}/store" class="link-text">View more products</a>
-        </div>
+            <!-- SECTION_TITLE -->
+            <div style="display: grid; grid-template-columns: 100fr max-content; align-items: center">
+                <nav>
+                    <h5 class="shop-section-title">
+                        <span style="font-size: var(--titleFontSize); font-weight: normal; font-family: Roboto-Bold, sans-serif">
+                            <img style="width: 20px; margin: 0 2px -1.5px 0" src="./static/images/icons/buy.png">Online Store
+                        </span>
+                        <br>
+                        <br>
+                        Scroll through our most intuitive problem-solving and smart products.
+                    </h5>
+                </nav>
+                <a href="{{URL_BASENAME}}/store" class="link-text">View more products</a>
+            </div>
 
-        <!-- PRODUCTS_CONTAINER -->
-        <div class="products-container">
+            <!-- PRODUCTS_CONTAINER -->
+            <div class="products-container">
 
-            {% for product in products %}
-                <a href="#" class="product-item-container">
+                {% for product in products %}
+                    <a href="#" class="product-item-container">
 
-                    <div style="display: grid; grid-template-columns: 100fr max-content; align-items: start; height: min-content">
+                        <div style="display: grid; grid-template-columns: 100fr max-content; align-items: start; height: min-content">
 
-                        <!-- NAME, DESCRIPTION, TAGS -->
-                        <nav>
-                            <h5 class="product-name">{{product['name']}}</h5>
-                            <p class="product-description">{{product['description']}}</p>
-                            <!-- TAGS -->
-                            <nav class="product-tags-container">
-                                {% for tag in product['tags'] %}
-                                    <span class="product-tag">{{tag}}</span>
-                                {% endfor %}
+                            <!-- NAME, DESCRIPTION, TAGS -->
+                            <nav>
+                                <h5 class="product-name">{{product['name']}}</h5>
+                                <p class="product-description">{{product['description']}}</p>
+                                <!-- TAGS -->
+                                <nav class="product-tags-container">
+                                    {% for tag in product['tags'] %}
+                                        <span class="product-tag">{{tag}}</span>
+                                    {% endfor %}
+                                </nav>
                             </nav>
-                        </nav>
-                        <!-- IMAGE -->
-                        <nav class="product-image-container">
-                            <img class="product-image" src="{{product['image_url']}}" alt="{{product['image_alt']}}">
-                        </nav>
+                            <!-- IMAGE -->
+                            <nav class="product-image-container">
+                                <img class="product-image" src="{{product['image_url']}}" alt="{{product['image_alt']}}">
+                            </nav>
 
-                    </div>
+                        </div>
 
-                </a>
-            {% endfor %}
+                    </a>
+                {% endfor %}
 
+            </div>
         </div>
     </div>
-</div>
+</section>
 
 {% endblock %}

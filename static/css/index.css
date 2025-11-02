@@ -38,6 +38,21 @@
 }
 
 
+/* SECTION LOCATION SMOOTH SCROLL SETUP*/
+html {
+  scroll-behavior: smooth;
+}
+/* respect user's reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+/* if you have a sticky header, offset the anchored sections */
+.section, section {
+  /* set this to your header height (e.g., 80px) */
+  scroll-margin-top: 60px;
+}
+
+
 body {
     font-family: Roboto-Regular, sans-serif;
     background-color: white;
