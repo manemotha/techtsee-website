@@ -244,7 +244,6 @@ return function(App $app) {
             'username'=>$inputUserData['username'],
             'displayName'=>$inputUserData['names'],
             'email'=>$inputUserData['email'],
-            'phoneNumber'=>$inputUserData['phoneNumber'],
             'password'=>$inputUserData['password'],
         ]);
 
