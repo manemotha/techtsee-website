@@ -20,7 +20,7 @@ $app = AppFactory::create();
 
 // Base path is used by html links/routes ({{basepath}}/admin/)
 // Ensure this path is a valid path
-$app->setBasePath('/techtsee');
+$app->setBasePath($_ENV['URL_BASENAME']);
 
 // Register Twig
 $twig = Twig::create([
