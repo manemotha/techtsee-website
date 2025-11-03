@@ -238,6 +238,49 @@ body {
 }
 
 
+/* LOGIN_SIGNUP_STYLES */
+.signup-container {
+    display: grid;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+    margin-left: var(--desktopMargin);
+    margin-right: var(--desktopMargin);
+}
+.signup-form-title {
+    font-size: var(--titleFontSize);
+    font-weight: normal;
+    font-family: Roboto-Bold, sans-serif;
+    margin: 0 0 20px 0;
+}
+.signup-form-container {
+    display: grid;
+    gap: 10px;
+}
+.signup-form-label {
+    color: var(--secondaryTextColor);
+}
+.signup-form-inputfield {
+    margin-top: 5px;
+    height: 40px;
+    outline: none;
+    font-family: Roboto-Regular, sans-serif;
+    font-size: var(--contentFontSize);
+    border: 2px solid var(--borderColor);
+    border-radius: var(--borderRadius);
+    padding: 0 20px 0 20px;
+}
+.signup-form-button {
+    border: none;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: var(--borderRadius);
+    background-color: var(--primaryColor);
+    color: white;
+    font-size: var(--contentFontSize);
+}
+
+
 /* FOOTER */
 #footer {
     display: grid;

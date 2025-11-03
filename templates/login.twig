@@ -3,22 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="./static/favicon.ico">
+    <link rel="stylesheet" href="./static/css/index.css">
     <title>Login</title>
 </head>
 <body>
 
-<main>
-    <div>
-        <form method="POST" action="{{URL_BASENAME}}/user/login" style="display: grid">
-            <label>
-                Username
-                <input type="text" aria-multiline="false" name="username" placeholder="Username">
-            </label>
-            <label>
-                Password
-                <input type="password" aria-multiline="false" name="password" placeholder="Password">
-            </label>
-            <button type="submit">Login</button>
+<style>
+    html, body {
+        height: 100%;
+    }
+</style>
+
+<main class="signup-container">
+    <div style="width: 300px">
+        <!-- FORM TITLE -->
+        <h5 class="signup-form-title">TECHTSEE | LOGIN</h5>
+
+        <form class="signup-form-container" method="POST" action="{{URL_BASENAME}}/user/login">
+            <input class="signup-form-inputfield" type="text" aria-multiline="false" name="username" placeholder="Username">
+
+            <input class="signup-form-inputfield" type="password" aria-multiline="false" name="password" placeholder="Password">
+
+            <button class="signup-form-button" type="submit">Login</button>
+
+            <!-- LINK_TEXT -->
+            <a href="{{URL_BASENAME}}/signup" class="link-text" style="font-size: var(--contentFontSize); margin-top: 5px">Don't have an account?</a>
         </form>
     </div>
 </main>
