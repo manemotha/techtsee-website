@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Signup</title>
+</head>
+<body>
+
+<main>
+    <div>
+        <form method="POST" action="{{URL_BASENAME}}/user/signup" style="display: grid">
+            <label>
+                Username
+                <input type="text" aria-multiline="false" name="username" placeholder="Username">
+            </label>
+            <label>
+                Names
+                <input type="text" aria-multiline="false" name="names" placeholder="Names">
+            </label>
+            <label>
+                Email
+                <input type="email" aria-multiline="false" name="email" placeholder="Email">
+            </label>
+            <label>
+                Phone Number
+                <input type="number" aria-multiline="false" name="phoneNumber" placeholder="Phone Number">
+            </label>
+            <label>
+                Password
+                <input type="password" aria-multiline="false" name="password" placeholder="Password">
+            </label>
+            <button type="submit">Signup</button>
+        </form>
+    </div>
+</main>
+
+</body>
+</html>

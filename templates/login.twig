@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+</head>
+<body>
+
+<main>
+    <div>
+        <form method="POST" action="{{URL_BASENAME}}/user/login" style="display: grid">
+            <label>
+                Username
+                <input type="text" aria-multiline="false" name="username" placeholder="Username">
+            </label>
+            <label>
+                Password
+                <input type="password" aria-multiline="false" name="password" placeholder="Password">
+            </label>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</main>
+
+</body>
+</html>
