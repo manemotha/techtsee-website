@@ -21,9 +21,18 @@
         <div class="navbar-buttons-layout">
             <a href="{{URL_BASENAME}}/" id="home-button" class="navbar-button">Home</a>
             <a href="{{URL_BASENAME}}/store" id="shop-button" class="navbar-button">Store</a>
-            <a href="#" id="login-button" class="login-button">
-                Login<img src="./static/images/icons/account.png" alt="Profile icon">
-            </a>
+
+            <!-- HANDLE: Account button functionalities for when a user is authenticated or not -->
+            {% if USER_DATA %}
+                <a href="#" class="login-button">
+                    {{USER_DATA['displayName']}}<img src="./static/images/icons/account.png" alt="Profile icon">
+                </a>
+            {% else %}
+                <a href="{{URL_BASENAME}}/login" class="login-button">
+                    Login<img src="./static/images/icons/account.png" alt="Profile icon">
+                </a>
+            {% endif %}
+
         </div>
     </div>
 
