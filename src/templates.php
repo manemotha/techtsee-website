@@ -84,7 +84,6 @@ $products = [
 
 return function(App $app) {
 
-    // TWIG VIEW ROUTES
     $app->get('/', function(Request $request, Response $response){
         global $products, $services;
 
