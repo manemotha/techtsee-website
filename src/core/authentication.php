@@ -29,7 +29,7 @@ function signup(array $data): array {
     $db = getDB();
 
     // ENSURE: All required fields/columns exist
-    $required = ['username','displayName','email','password'];
+    $required = ['username','display_name','email','password'];
     foreach ($required as $field) {
         if (empty($data[$field])) {
             return ['status' => false, 'message' => "missing field: $field"];
@@ -52,11 +52,11 @@ function signup(array $data): array {
     $hash = password_hash($data['password'], PASSWORD_DEFAULT);
 
     // MYSQL: Insert user data into database
-    $stmt = $db->prepare("INSERT INTO users (id, username, displayName, email, password) VALUES (?,?,?,?,?)");
+    $stmt = $db->prepare("INSERT INTO users (id, username, display_name, email, password) VALUES (?,?,?,?,?)");
     $stmt->execute([
         $generatedUserID,
         $data['username'],
-        $data['displayName'],
+        $data['display_name'],
         $data['email'],
         $hash
     ]);
@@ -84,7 +84,7 @@ function login(Request $request, string $username, string $password): array {
 
     // MYSQL: Inactivate/revoke old authentication token
     if ($oldToken) {
-        $db->prepare("UPDATE tokens SET isActive = false WHERE userId = ? AND token = ?")->execute([$user['id'] ?? null, $oldToken]);
+        $db->prepare("UPDATE tokens SET is_active = false WHERE user_id = ? AND token = ?")->execute([$user['id'] ?? null, $oldToken]);
     }
 
     // Token expiration DateTime
@@ -94,7 +94,7 @@ function login(Request $request, string $username, string $password): array {
     $token = generateToken(32);
 
     // MYSQL: Insert new token data into database
-    $stmt = $db->prepare("INSERT INTO tokens (userId, token, isActive, expires) VALUES (?, ?, true, ?)");
+    $stmt = $db->prepare("INSERT INTO tokens (user_id, token, is_active, expires_at) VALUES (?, ?, true, ?)");
     $stmt->execute([$user['id'], $token, $expiry]);
 
     // SESSION: Set authentication token to user's browser
@@ -111,8 +111,8 @@ function authenticate($token): ?array {
     $stmt = $db->prepare("
         SELECT U.* 
         FROM users AS U 
-        JOIN tokens AS T ON T.userId = U.id 
-        WHERE T.token = ? AND T.isActive = true AND T.expires > NOW()
+        JOIN tokens AS T ON T.user_id = U.id 
+        WHERE T.token = ? AND T.is_active = true AND T.expires_at > NOW()
         LIMIT 1
     ");
     $stmt->execute([$token]);

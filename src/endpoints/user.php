@@ -40,7 +40,7 @@ return function(App $app) {
         // User login result
         $signupResult = signup([
             'username'=>$inputUserData['username'],
-            'displayName'=>$inputUserData['names'],
+            'display_name'=>$inputUserData['names'],
             'email'=>$inputUserData['email'],
             'password'=>$inputUserData['password'],
         ]);
