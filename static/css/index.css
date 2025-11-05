@@ -11,6 +11,7 @@
     /* FONT-SIZES */
     --contentFontSize: 15px;
     --titleFontSize: 20px;
+    --linkTextFontSize: 12px;
 
     /* COLORS */
     --borderColor: #E4E4E4;
@@ -67,7 +68,7 @@ body {
     font-family: Roboto-Regular, sans-serif;
     font-weight: normal;
     color: var(--primaryColor);
-    font-size: 12px;
+    font-size: var(--linkTextFontSize);
 }
 
 
@@ -288,6 +289,13 @@ body {
     align-items: center;
     height: 150px;
     margin: 0 var(--desktopMargin) 0 var(--desktopMargin);
+}
+.address {
+    font-size: var(--linkTextFontSize);
+    font-family: Roboto-Regular, sans-serif;
+    font-weight: normal;
+    color: var(--secondaryTextColor);
+    max-width: 300px
 }
 .social-link-icon {
     width: 25px;
