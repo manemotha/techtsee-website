@@ -1,0 +1,93 @@
+@use "variables" as *;
+
+
+// navbar buttons
+.navbar-button {
+    font-family: Roboto-Regular, sans-serif;
+    text-decoration: none;
+    font-size: $content-font-size;
+    color: $secondary-text;
+}
+.selected-navbar-button {
+    font-family: Roboto-Bold, sans-serif;
+    color: $title-text;
+}
+
+// user login button (with profile icon)
+.login-button {
+    background-color: $primary-color;
+    border-radius: $border-radius;
+    display: flex;
+    align-content: center;
+    color: white;
+    font-size: $content-font-size;
+    font-family: Roboto-Regular, sans-serif;
+    text-decoration: none;
+    padding: 7px 13px;
+
+    img {
+        filter: invert(1);
+        margin: 0  -2px 0 5px;
+        width: 18px;
+    }
+}
+
+
+// introduction button
+.intro-button {
+    font-size: $content-font-size;
+    text-decoration: none;
+    align-content: center;
+    color: white;
+    border: none;
+    height: 50px;
+    padding: 0 30px 0 30px;
+    border-radius: $border-radius;
+    background-color: $primary-color;
+    transition: 0.2s ease;
+    &:hover {
+        padding: 0 40px 0 40px;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+    &:active {
+        opacity: 0.8;
+        transition: 0.2s ease;
+    }
+}
+
+
+// products button
+.product-buy-button {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    font-family: Roboto-Bold, sans-serif;
+    border-radius: $border-radius;
+    padding: 0 20px;
+    border: none;
+    background-color: $primary-color;
+    color: white;
+    transition: 0.2s ease;
+
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    &:active {
+        opacity: 0.8;
+    }
+}
+
+
+// user signup/login form, submit button
+.signup-form-button {
+  border: none;
+  height: 40px;
+  margin-top: 5px;
+  border-radius: $border-radius;
+  background-color: $primary-color;
+  color: white;
+  font-size: $content-font-size;
+}

@@ -1,0 +1,10 @@
+@use 'variables' as *;
+
+
+// global text for all basic text-only links
+.link-text {
+  font-family: Roboto-Regular, sans-serif;
+  font-weight: normal;
+  color: $primary-color;
+  font-size: $link-text-font-size;
+}

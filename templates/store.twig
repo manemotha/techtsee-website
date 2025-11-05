@@ -2,56 +2,6 @@
 
 {% block content %}
 
-<style>
-    .shop-container {
-        /*background-color: var(--secondaryBackgroundColor);*/
-        margin-right: var(--desktopMargin);
-        margin-left: var(--desktopMargin);
-        padding-top: var(--sectionPadding);
-        padding-bottom: var(--sectionPadding);
-    }
-
-    /* SEARCHFIELD */
-    .searchfield-container {
-        display: flex;
-        border: 2px solid var(--borderColor);
-        border-radius: var(--borderRadius);
-        align-items: center;
-        background-color: white;
-        padding: 10px;
-        width: max-content;
-        gap: 10px;
-        margin-top: 5px;
-        margin-bottom: var(--sectionPadding);
-    }
-    .searchfield-icon {
-        width: 15px;
-        margin-bottom: 1px;
-    }
-    .searchfield-label {
-        font-size: var(--contentFontSize);
-        color: var(--secondaryTextColor);
-    }
-    .searchfield {
-        outline: none;
-        border: none;
-    }
-    .searchfield-search-button {
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-        transition: 0.2s ease;
-    }
-    .searchfield-search-button:hover {
-        text-decoration: underline;
-        transition: 0.2s ease;
-    }
-    .searchfield-search-button:active {
-        opacity: 0.5;
-        transition: 0.2s ease;
-    }
-</style>
-
 <div class="shop-container">
 
     <!-- SEARCH_AREA -->

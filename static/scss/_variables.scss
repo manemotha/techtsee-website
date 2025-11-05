@@ -1,0 +1,44 @@
+// VARIABLES
+$desktop-margin: 150px;
+$section-padding: 50px;
+$border-radius: 7px;
+
+// FONT SIZES
+$content-font-size: 15px;
+$title-font-size: 20px;
+$link-text-font-size: 12px;
+
+// COLORS
+$border-color: #E4E4E4;
+$hover-border-color: #a4b1e5;
+$secondary-bg: #efefef;
+$main-background-color: #FFFFFF;
+$secondary-text: #757575;
+$primary-text: #434343;
+$title-text: #000;
+$primary-color: #2A3FCA;
+
+:root {
+    /* MARGINS */
+    --desktop-margin: #{$desktop-margin};
+
+    /* PADDINGS */
+    --section-padding: #{$section-padding};
+
+    /* BORDERS */
+    --border-radius: #{$border-radius};
+
+    /* FONT-SIZES */
+    --content-font-size: #{$content-font-size};
+    --title-font-size: #{$title-font-size};
+    --linkT-text-font-size: #{$link-text-font-size};
+
+    /* COLORS */
+    --border-color: #{$border-color};
+    --hover-border-color: #{$hover-border-color};
+    --secondary-background-color: #{$secondary-bg};
+    --secondary-text-color: #{$secondary-text};
+    --primary-text-color: #{$primary-text};
+    --title-text-color: #{$title-text};
+    --primary-color: #{$primary-color};
+}

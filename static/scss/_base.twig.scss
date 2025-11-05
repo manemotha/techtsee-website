@@ -1,0 +1,54 @@
+@use "variables" as *;
+
+// navbar layout styles
+.navbar-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 60px;
+    border-bottom: 1px solid $border-color;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.navbar-layout {
+    height: 100%;
+    margin: 0 $desktop-margin;
+    display: grid;
+    grid-template-columns: 100fr max-content;
+    align-content: center;
+}
+.navbar-buttons-layout {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+// appname trademark text
+.trademark {
+    font-size: $content-font-size;
+    font-family: Roboto-Bold, sans-serif;
+    color: $title-text;
+}
+
+
+#footer-container {
+  display: grid;
+  grid-template-columns: 100fr max-content;
+  align-items: center;
+  height: 150px;
+  margin: 0 $desktop-margin;
+  border-top: 1px solid $border-color;
+}
+
+// copyright & address text
+.address {
+  font-size: $link-text-font-size;
+  font-family: Roboto-Regular, sans-serif;
+  font-weight: normal;
+  color: $secondary-text;
+  max-width: 300px;
+}
+
+// social media links icons
+.social-link-icon {
+  width: 25px;
+}

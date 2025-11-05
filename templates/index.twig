@@ -2,149 +2,6 @@
 
 {% block content %}
 
-<style>
-    .introduction-container {
-        min-height: 600px;
-        display: grid;
-        grid-template-rows: auto max-content;
-        justify-items: center;
-        margin-right: var(--desktopMargin);
-        margin-left: var(--desktopMargin);
-    }
-    .intro-content-layout {
-        display: grid;
-        grid-template-columns: auto min-content;
-        align-items: center;
-        min-height: 550px;
-        width: 100%;
-        gap: 100px;
-    }
-
-    /* TITLE */
-    .intro-content-layout h5 {
-        font-family: Roboto-Bold, sans-serif;
-        font-size: 30px;
-        font-weight: normal;
-        max-width: 590px;
-        color: var(--titleTextColor);
-    }
-    /* PARAGRAPH */
-    .intro-content-layout p {
-        max-width: 550px;
-        font-family: Roboto-Regular, sans-serif;
-        font-size: var(--contentFontSize);
-        color: var(--secondaryTextColor);
-    }
-    .tag {
-        font-family: Roboto-Regular, sans-serif;
-        font-weight: normal;
-        font-size: 12px;
-        padding: 5px 10px 5px 10px;
-        border-radius: 3px;
-        background-color: #E4E4E4;
-        color: var(--titleTextColor);
-    }
-    /* IMAGE */
-    .intro-image {
-        width: 400px;
-    }
-    /* BUTTON */
-    .intro-button {
-        font-size: var(--contentFontSize);
-        text-decoration: none;
-        align-content: center;
-        color: white;
-        border: none;
-        height: 50px;
-        padding: 0 30px 0 30px;
-        border-radius: var(--borderRadius);
-        background-color: var(--primaryColor);
-        transition: 0.2s ease;
-    }
-    .intro-button:hover {
-        padding: 0 40px 0 40px;
-        cursor: pointer;
-        transition: 0.2s ease;
-    }
-    .intro-button:active {
-        opacity: 0.8;
-        transition: 0.2s ease;
-    }
-
-
-    /* SERVICES */
-    .services-container {
-        font-size: var(--contentFontSize);
-        padding-top: var(--sectionPadding);
-        padding-bottom: var(--sectionPadding);
-        margin-right: var(--desktopMargin);
-        margin-left: var(--desktopMargin);
-    }
-    .services-section-title {
-        font-family: Roboto-Regular, sans-serif;
-        font-size: var(--contentFontSize);
-        font-weight: normal;
-        justify-self: center;
-        text-align: center;
-        color: var(--titleTextColor);
-        max-width: 270px;
-        margin-bottom: 60px;
-    }
-    /* SERVICES_TABLE */
-    .services-tables-container {
-        display: grid;
-        grid-template-columns: auto auto;
-        column-gap: 100px;
-        row-gap: 50px;
-        align-items: start;
-        margin-bottom: var(--sectionPadding);
-    }
-    .services-table {
-        width: 100%;
-    }
-    .table-title {
-        text-align: left;
-        font-size: var(--contentFontSize);
-        color: var(--titleTextColor);
-        border-bottom: 1px solid var(--borderColor);
-        font-family: Roboto-Bold, sans-serif;
-        font-weight: normal;
-        height: 30px;
-    }
-    .table-row {
-        height: 25px;
-    }
-    .table-item {
-        display: grid;
-        width: 100%;
-        align-self: center;
-        font-family: Roboto-Regular, sans-serif;
-        font-size: var(--contentFontSize);
-        color: var(--secondaryTextColor);
-        border-bottom: 1px solid var(--borderColor);
-        font-weight: normal;
-    }
-    .item-price {
-        font-family: Roboto-Bold, sans-serif;
-        color: var(--primaryColor);
-        position: absolute;
-        justify-self: flex-end;
-    }
-
-
-    /* SHOP */
-    .shop-container {
-        background-color: var(--secondaryBackgroundColor);
-        padding-bottom: var(--sectionPadding);
-    }
-    .shop-section-title {
-        font-family: Roboto-Regular, sans-serif;
-        font-weight: normal;
-        max-width: 300px;
-        margin-bottom: var(--sectionPadding);
-    }
-</style>
-
 <!-- INTRODUCTION -->
 <div class="introduction-container">
 
@@ -153,7 +10,7 @@
         <div style="display: grid; gap: 20px">
             <h5 style="margin: 0">
                 Transform your technology and future-proof your business with our
-                <span style="color: var(--primaryColor); font-family: Roboto-Bold, sans-serif">Innovative ICT</span>
+                <span style="color: var(--primary-color); font-family: Roboto-Bold, sans-serif">Innovative ICT</span>
                 solutions
             </h5>
             <p style="margin: 0">
@@ -174,7 +31,7 @@
     <a href="#store" class="intro-button">Explore Store</a>
 
     <!-- SECTION_BREAK -->
-    <span style="width: 100%; height: 0; border-bottom: 1px solid var(--borderColor); margin-top: 100px"></span>
+    <span style="width: 100%; height: 0; border-bottom: 1px solid var(--border-color); margin-top: 100px"></span>
 </div>
 
 <!-- SERVICES -->
@@ -205,16 +62,19 @@
 
 <!-- SHOP -->
 <section id="store" class="section">
-    <div class="shop-container">
+    <div class="shop-container" style="padding-top: 0;">
+
+        <!-- SECTION_BREAK -->
+        <nav style="width: 100%; height: 0; border-bottom: 1px solid var(--border-color)"></nav>
 
         <!-- MARGIN_LAYOUT -->
-        <div style="margin-right: var(--desktopMargin); margin-left: var(--desktopMargin); padding-top: var(--sectionPadding); padding-bottom: var(--sectionPadding)">
+        <div style="padding-top: var(--section-padding); padding-bottom: var(--section-padding)">
 
             <!-- SECTION_TITLE -->
             <div style="display: grid; grid-template-columns: 100fr max-content; align-items: center">
                 <nav>
                     <h5 class="shop-section-title">
-                        <span style="font-size: var(--titleFontSize); font-weight: normal; font-family: Roboto-Bold, sans-serif">
+                        <span style="font-size: var(--title-font-size); font-weight: normal; font-family: Roboto-Bold, sans-serif">
                             <img style="width: 20px; margin: 0 2px -1.5px 0" src="./static/images/icons/buy.png">Online Store
                         </span>
                         <br>

@@ -1,0 +1,54 @@
+@use 'variables' as *;
+
+.shop-container {
+    margin-right: $desktop-margin;
+    margin-left: $desktop-margin;
+    padding-top: $section-padding;
+    padding-bottom: $section-padding;
+    background-color: $main-background-color;
+}
+.shop-section-title {
+    font-family: Roboto-Regular, sans-serif;
+    font-weight: normal;
+    max-width: 300px;
+    margin-bottom: $section-padding;
+}
+
+.searchfield-container {
+    display: flex;
+    border: 2px solid $border-color;
+    border-radius: $border-radius;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    width: max-content;
+    gap: 10px;
+    margin-top: 5px;
+    margin-bottom: $section-padding;
+}
+.searchfield-icon {
+    width: 15px;
+    margin-bottom: 1px;
+}
+.searchfield-label {
+    font-size: $content-font-size;
+    color: $secondary-text;
+}
+.searchfield {
+    outline: none;
+    border: none;
+}
+.searchfield-search-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.searchfield-search-button:hover {
+    text-decoration: underline;
+    transition: 0.2s ease;
+}
+.searchfield-search-button:active {
+    opacity: 0.5;
+    transition: 0.2s ease;
+}

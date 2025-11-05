@@ -1,0 +1,32 @@
+@use 'variables' as *;
+@use 'fonts' as *;
+@use 'buttons' as *;
+@use 'texts' as *;
+@use 'base.twig' as *;
+@use 'products' as *;
+@use 'forms' as *;
+@use 'index.twig' as *;
+@use 'store.twig' as *;
+
+
+// global styles
+html {
+  scroll-behavior: smooth;
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+.section, section {
+  scroll-margin-top: 60px;
+}
+
+body {
+  font-family: Roboto-Regular, sans-serif;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow: auto;
+}

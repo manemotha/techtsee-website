@@ -1,0 +1,107 @@
+@use "variables" as *;
+
+.introduction-container {
+    min-height: 600px;
+    display: grid;
+    grid-template-rows: auto max-content;
+    justify-items: center;
+    margin-right: $desktop-margin;
+    margin-left: $desktop-margin;
+}
+.intro-content-layout {
+    display: grid;
+    grid-template-columns: auto min-content;
+    align-items: center;
+    min-height: 550px;
+    width: 100%;
+    gap: 100px;
+}
+
+/* TITLE */
+.intro-content-layout h5 {
+    font-family: Roboto-Bold, sans-serif;
+    font-size: 30px;
+    font-weight: normal;
+    max-width: 590px;
+    color: $title-text;
+}
+/* PARAGRAPH */
+.intro-content-layout p {
+    max-width: 550px;
+    font-family: Roboto-Regular, sans-serif;
+    font-size: $content-font-size;
+    color: $secondary-text;
+}
+.tag {
+    font-family: Roboto-Regular, sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 3px;
+    background-color: #E4E4E4;
+    color: $title-text;
+}
+/* IMAGE */
+.intro-image {
+    width: 400px;
+}
+
+
+/* SERVICES */
+.services-container {
+    font-size: $content-font-size;
+    padding-top: $section-padding;
+    padding-bottom: $section-padding;
+    margin-right: $desktop-margin;
+    margin-left: $desktop-margin;
+}
+.services-section-title {
+    font-family: Roboto-Regular, sans-serif;
+    font-size: $content-font-size;
+    font-weight: normal;
+    justify-self: center;
+    text-align: center;
+    color: $title-text;
+    max-width: 270px;
+    margin-bottom: 60px;
+}
+/* SERVICES_TABLE */
+.services-tables-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 100px;
+    row-gap: 50px;
+    align-items: start;
+    margin-bottom: $section-padding;
+}
+.services-table {
+    width: 100%;
+}
+.table-title {
+    text-align: left;
+    font-size: $content-font-size;
+    color: $title-text;
+    border-bottom: 1px solid $border-color;
+    font-family: Roboto-Bold, sans-serif;
+    font-weight: normal;
+    height: 30px;
+}
+.table-row {
+    height: 25px;
+}
+.table-item {
+    display: grid;
+    width: 100%;
+    align-self: center;
+    font-family: Roboto-Regular, sans-serif;
+    font-size: $content-font-size;
+    color: $secondary-text;
+    border-bottom: 1px solid $border-color;
+    font-weight: normal;
+}
+.item-price {
+    font-family: Roboto-Bold, sans-serif;
+    color: $primary-color;
+    position: absolute;
+    justify-self: flex-end;
+}
