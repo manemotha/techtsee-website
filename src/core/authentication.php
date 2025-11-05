@@ -37,7 +37,7 @@ function signup(array $data): array {
     }
 
     // MYSQL: Query for user with same username
-    $stmt = $db->prepare("SELECT username FROM User WHERE username = ?");
+    $stmt = $db->prepare("SELECT username FROM users WHERE username = ?");
     $stmt->execute([$data['username']]);
 
     // ENSURE: No user with same username exists
@@ -52,7 +52,7 @@ function signup(array $data): array {
     $hash = password_hash($data['password'], PASSWORD_DEFAULT);
 
     // MYSQL: Insert user data into database
-    $stmt = $db->prepare("INSERT INTO User (id, username, displayName, email, password) VALUES (?,?,?,?,?)");
+    $stmt = $db->prepare("INSERT INTO users (id, username, displayName, email, password) VALUES (?,?,?,?,?)");
     $stmt->execute([
         $generatedUserID,
         $data['username'],
@@ -70,7 +70,7 @@ function login(Request $request, string $username, string $password): array {
     // MYSQL: Open database connection
     $db = getDB();
 
-    $stmt = $db->prepare("SELECT * FROM User WHERE username = ?");
+    $stmt = $db->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->execute([$username]);
     $user = $stmt->fetch();
 
@@ -84,7 +84,7 @@ function login(Request $request, string $username, string $password): array {
 
     // MYSQL: Inactivate/revoke old authentication token
     if ($oldToken) {
-        $db->prepare("UPDATE Tokens SET isActive = false WHERE userId = ? AND token = ?")->execute([$user['id'] ?? null, $oldToken]);
+        $db->prepare("UPDATE tokens SET isActive = false WHERE userId = ? AND token = ?")->execute([$user['id'] ?? null, $oldToken]);
     }
 
     // Token expiration DateTime
@@ -94,7 +94,7 @@ function login(Request $request, string $username, string $password): array {
     $token = generateToken(32);
 
     // MYSQL: Insert new token data into database
-    $stmt = $db->prepare("INSERT INTO Tokens (userId, token, created, isActive, expires) VALUES (?, ?, NOW(), true, ?)");
+    $stmt = $db->prepare("INSERT INTO tokens (userId, token, created, isActive, expires) VALUES (?, ?, NOW(), true, ?)");
     $stmt->execute([$user['id'], $token, $expiry]);
 
     // SESSION: Set authentication token to user's browser
@@ -110,8 +110,8 @@ function authenticate($token): ?array {
 
     $stmt = $db->prepare("
         SELECT U.* 
-        FROM User AS U 
-        JOIN Tokens AS T ON T.userId = U.id 
+        FROM users AS U 
+        JOIN tokens AS T ON T.userId = U.id 
         WHERE T.token = ? AND T.isActive = true AND T.expires > NOW()
         LIMIT 1
     ");
