@@ -7,6 +7,10 @@
     justify-items: center;
     margin-right: $desktop-margin;
     margin-left: $desktop-margin;
+    background-image: url("../images/introduction_bg_image.png");
+    background-position: bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .intro-content-layout {
     display: grid;
