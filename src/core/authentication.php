@@ -88,13 +88,13 @@ function login(Request $request, string $username, string $password): array {
     }
 
     // Token expiration DateTime
-    $expiry = date('Y-m-d H:i:s', strtotime('+30 days'));
+    $expiry = getDateTime('+30 days');
 
     // Create new token
     $token = generateToken(32);
 
     // MYSQL: Insert new token data into database
-    $stmt = $db->prepare("INSERT INTO tokens (userId, token, created, isActive, expires) VALUES (?, ?, NOW(), true, ?)");
+    $stmt = $db->prepare("INSERT INTO tokens (userId, token, isActive, expires) VALUES (?, ?, true, ?)");
     $stmt->execute([$user['id'], $token, $expiry]);
 
     // SESSION: Set authentication token to user's browser
