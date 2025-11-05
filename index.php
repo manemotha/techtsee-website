@@ -23,12 +23,16 @@ $app = AppFactory::create();
 $app->setBasePath($_ENV['URL_BASENAME']);
 
 // Register Twig
+// TODO: catch LoaderError exception
 $twig = Twig::create([
     __DIR__ . '/templates',
     ], ['cache' => false]);
 $app->add(TwigMiddleware::create($app, $twig));
 
-// Include routes
-(require __DIR__ . '/src/routes.php')($app);
+// Templates route
+(require __DIR__ . '/src/templates.php')($app);
+
+// Internal service routes
+(require __DIR__ . '/src/endpoints/user.php')($app);
 
 $app->run();
