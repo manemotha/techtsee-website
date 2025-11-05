@@ -37,3 +37,8 @@ function generate_uuid_v4() {
 
     return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
+
+
+function getDateTime(string $datetime) {
+    return date('Y-m-d H:i:s', strtotime($datetime));
+}
