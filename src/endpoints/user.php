@@ -18,16 +18,17 @@ return function(App $app) {
         // REQUEST: Get user login data
         $inputUserData = $request->getParsedBody();
 
-        // VALIDATE: username
+        // VALIDATE: username & password
         try {
             $validatedUsername = validateUsername($inputUserData['username']);
+            $validatedPassword = validatePassword($inputUserData['password']);
         } catch (Exception $error_message) {
             $response->getBody()->write(json_encode(['message'=>$error_message->getMessage()]));
             return $response->withStatus(400);
         }
 
         // CORE: User login result
-        $loginResult = login($request, $validatedUsername, $inputUserData['password']);
+        $loginResult = login($request, $validatedUsername, $validatedPassword);
 
         // CONDITION: User logged in successfully, redirect to home/index page
         if ($loginResult['status']) {
@@ -48,9 +49,10 @@ return function(App $app) {
         // REQUEST: Get user login data
         $inputUserData = $request->getParsedBody();
 
-        // VALIDATE: username
+        // VALIDATE: username & password
         try {
             $validatedUsername = validateUsername($inputUserData['username']);
+            $validatedPassword = validatePassword($inputUserData['password']);
         } catch (Exception $error_message) {
             $response->getBody()->write(json_encode(['message'=>$error_message->getMessage()]));
             return $response->withStatus(400);
@@ -61,7 +63,7 @@ return function(App $app) {
             'username'=>$validatedUsername,
             'display_name'=>$inputUserData['names'],
             'email'=>$inputUserData['email'],
-            'password'=>$inputUserData['password'],
+            'password'=>$validatedPassword,
         ]);
 
         $URL_BASENAME = $_ENV['URL_BASENAME'];

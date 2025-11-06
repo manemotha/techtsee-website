@@ -21,3 +21,18 @@ function validateUsername(string $username): string {
     return strtolower($username);
 
 }
+
+
+/**
+ * @throws Exception
+ */
+function validatePassword(string $password) :string {
+
+    // ENSURE: password is required min & max length
+    if (strlen($password) < 8) {
+        throw new Exception("password should be greater than 8 chars");
+    }
+
+    // RETURN: validated password
+    return $password;
+}
