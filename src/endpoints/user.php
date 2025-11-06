@@ -5,6 +5,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\App;
 
+// REQUIRED FILES
+require __DIR__ . '/../core/validators.php';
+
 
 return function(App $app) {
 
@@ -15,8 +18,16 @@ return function(App $app) {
         // REQUEST: Get user login data
         $inputUserData = $request->getParsedBody();
 
+        // VALIDATE: username
+        try {
+            $validatedUsername = validateUsername($inputUserData['username']);
+        } catch (Exception $error_message) {
+            $response->getBody()->write(json_encode(['message'=>$error_message->getMessage()]));
+            return $response->withStatus(400);
+        }
+
         // CORE: User login result
-        $loginResult = login($request, $inputUserData['username'], $inputUserData['password']);
+        $loginResult = login($request, $validatedUsername, $inputUserData['password']);
 
         // CONDITION: User logged in successfully, redirect to home/index page
         if ($loginResult['status']) {
@@ -37,9 +48,17 @@ return function(App $app) {
         // REQUEST: Get user login data
         $inputUserData = $request->getParsedBody();
 
+        // VALIDATE: username
+        try {
+            $validatedUsername = validateUsername($inputUserData['username']);
+        } catch (Exception $error_message) {
+            $response->getBody()->write(json_encode(['message'=>$error_message->getMessage()]));
+            return $response->withStatus(400);
+        }
+
         // User login result
         $signupResult = signup([
-            'username'=>$inputUserData['username'],
+            'username'=>$validatedUsername,
             'display_name'=>$inputUserData['names'],
             'email'=>$inputUserData['email'],
             'password'=>$inputUserData['password'],
