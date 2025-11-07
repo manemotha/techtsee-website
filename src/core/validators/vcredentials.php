@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 
 /**
- * @param string $username The username to validated.
+ * @param string $username The username to validate.
  * @return string The validated username.
  * @throws Exception
  */
@@ -26,7 +26,7 @@ function validateUsername(string $username): string {
 
 
 /**
- * @param string $password The password to validated.
+ * @param string $password The password to validate.
  * @return string The validated password.
  * @throws Exception
  */

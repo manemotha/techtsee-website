@@ -6,7 +6,7 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Slim\App;
 
 // REQUIRED FILES
-require __DIR__ . '/../core/validators.php';
+require __DIR__ . '/../core/validators/vcredentials.php';
 
 
 return function(App $app) {
