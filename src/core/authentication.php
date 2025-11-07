@@ -79,10 +79,33 @@ function signup(array $data) :void {
 }
 
 
-function login(Request $request, string $username, string $password): array {
+/**
+ * @param array $data User login data.
+ * @return array Database user account data after authorization.
+ * @throws Exception
+ */
+function login(array $data): array {
 
     // MYSQL: Open database connection
     $db = getDB();
+
+    // ENSURE: User request data has required keys
+    try {
+        validateRequiredKeys($data, [
+            'username',
+            'password'
+        ]);
+    } catch (Exception $error_message) {
+        throw new Exception($error_message->getMessage());
+    }
+
+    // VALIDATE: Username & password
+    try {
+        $username = validateUsername($data['username']);
+        $password = validatePassword($data['password']);
+    } catch (Exception $error_message) {
+        throw new Exception($error_message->getMessage());
+    }
 
     $stmt = $db->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->execute([$username]);
@@ -90,15 +113,7 @@ function login(Request $request, string $username, string $password): array {
 
     // VALIDATE: user password with database hashed password
     if (!$user || !password_verify($password, $user['password'])) {
-        return ['status' => false, 'message' => 'incorrect password'];
-    }
-
-    // SESSION: Get token from user cookies
-    $oldToken = $request->getCookieParams()['token'] ?? null;
-
-    // MYSQL: Inactivate/revoke old authentication token
-    if ($oldToken) {
-        $db->prepare("UPDATE tokens SET is_active = false WHERE user_id = ? AND token = ?")->execute([$user['id'] ?? null, $oldToken]);
+        throw new Exception('incorrect password');
     }
 
     // Token expiration DateTime
@@ -111,10 +126,14 @@ function login(Request $request, string $username, string $password): array {
     $stmt = $db->prepare("INSERT INTO tokens (user_id, token, is_active, expires_at) VALUES (?, ?, true, ?)");
     $stmt->execute([$user['id'], $token, $expiry]);
 
-    // SESSION: Set authentication token to user's browser
+    // SESSION: Set authentication token to user browser cookies
     setAuthCookie($token);
 
-    return ['status' => true, 'message' => $user];
+    // Remove secret keys from user data for security purposes
+    unset($user['password']);
+
+    // User login succeeded
+    return $user;
 }
 
 

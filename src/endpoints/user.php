@@ -14,35 +14,28 @@ return function(App $app) {
 
     $app->post('/user/login', function(Request $request, Response $response) {
 
-        $URL_BASENAME = $_ENV['URL_BASENAME'];
+        // GET & DECODE: User request data
+        $inputUserData = json_decode(file_get_contents("php://input"), true);
 
-        // REQUEST: Get user login data
-        $inputUserData = $request->getParsedBody();
-
-        // VALIDATE: username & password
+        // CATCH: Login exceptions
         try {
-            $validatedUsername = validateUsername($inputUserData['username']);
-            $validatedPassword = validatePassword($inputUserData['password']);
-        } catch (Exception $error_message) {
-            $response->getBody()->write(json_encode(['message'=>$error_message->getMessage()]));
-            return $response->withStatus(400);
+            $userData = login($inputUserData);
+        }
+        catch (Exception $error_message) {
+            http_response_code(400);
+            echo json_encode(['error'=>$error_message->getMessage()]);
+            exit;
+        }
+        catch (TypeError) { // Invalid JSON format
+            http_response_code(400);
+            echo json_encode(["error" => "invalid JSON format"]);
+            exit;
         }
 
-        // CORE: User login result
-        $loginResult = login($request, $validatedUsername, $validatedPassword);
-
-        // CONDITION: User logged in successfully, redirect to home/index page
-        if ($loginResult['status']) {
-            // User logged in successfully, redirect to home page
-            return $response
-                    ->withHeader('Location', "$URL_BASENAME/")
-                    ->withStatus(302);
-        }
-
-        // User login failed, let user retry login
-        return $response
-                ->withHeader('Location', "$URL_BASENAME/login")
-                ->withStatus(302);
+        // User login succeeded
+        http_response_code(200);
+        echo json_encode(['message'=>'login succeeded', 'user_data'=>$userData]);
+        exit;
     });
 
     $app->post('/user/signup', function() {
