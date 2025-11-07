@@ -21,16 +21,18 @@
         <!-- FORM TITLE -->
         <h5 class="signup-form-title">TECHTSEE | SIGN UP</h5>
 
-        <form class="signup-form-container" method="POST" action="{{URL_BASENAME}}/user/signup">
-            <input class="signup-form-inputfield" type="text" aria-multiline="false" name="username" placeholder="Username">
+        <form id="form" class="signup-form-container">
+            <input class="signup-form-inputfield" type="text" aria-multiline="false" name="username" placeholder="Username" min="4" maxlength="30" required>
 
-            <input class="signup-form-inputfield" type="text" aria-multiline="false" name="names" placeholder="Names">
+            <input class="signup-form-inputfield" type="text" aria-multiline="false" name="display_name" placeholder="Names" required>
 
-            <input class="signup-form-inputfield" type="email" aria-multiline="false" name="email" placeholder="Email">
+            <input class="signup-form-inputfield" type="email" aria-multiline="false" name="email" placeholder="Email" required>
 
-            <input class="signup-form-inputfield" type="password" aria-multiline="false" name="password" placeholder="Password">
+            <input class="signup-form-inputfield" type="password" aria-multiline="false" name="password" placeholder="Password" minlength="8" required>
 
-            <!-- TODO: Fix error, redirects even with empty fields -->
+            <!-- FORM ERROR NOTIFICATION -->
+            <h5 id="error-message" class="form-error-notification"></h5>
+
             <button class="signup-form-button" type="submit">Signup</button>
 
             <!-- LINK_TEXT -->
@@ -39,6 +41,84 @@
 
     </div>
 </main>
+
+<script>
+
+    const form = document.getElementById('form');
+
+    // USER SIGNUP
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        // Ensure required fields exist
+        const requiredFields = ['username', 'display_name', 'email', 'password'];
+        for (let field of requiredFields) {
+            if (!data[field] || data[field].trim() === '') {
+                showNotification(`${field} is required.`)
+                return;
+            }
+        }
+
+        // Optional: Validate email
+        if (!/^\S+@\S+\.\S+$/.test(data.email)) {
+            showNotification('invalid email address')
+            return;
+        }
+
+        try {
+            const response = await fetch('{{URL_BASENAME}}/user/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            if (response.status === 200) {
+                document.location.href = "{{URL_BASENAME}}/login";
+            } else if (response.status === 409) {
+                showNotification("username is not available")
+            } else {
+                showNotification(result.error)
+            }
+        } catch (err) {
+            showNotification('network or server error, could not connect with server.')
+        }
+    });
+
+
+    /* ERROR NOTIFICATION */
+    const notification = document.getElementById('error-message');
+    let hideTimeout = null;
+
+    function showNotification(message, duration = 3000) {
+
+        // Ensure the message is not null
+        if (!message) return;
+
+        // Clear any previous timeout
+        if (hideTimeout) {
+            clearTimeout(hideTimeout);
+            hideTimeout = null;
+        }
+
+        // Add text and show notification
+        notification.innerText = message;
+        notification.classList.add('show');
+
+        // Hide after duration
+        hideTimeout = setTimeout(() => {
+            notification.classList.remove('show');
+            notification.innerText = ''; // clear content
+        }, duration);
+    }
+
+</script>
 
 </body>
 </html>
