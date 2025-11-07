@@ -7,6 +7,7 @@ use Slim\App;
 
 // REQUIRED FILES
 require __DIR__ . '/../core/validators/vcredentials.php';
+require __DIR__ . '/../core/validators/vrequest.php';
 
 
 return function(App $app) {
@@ -44,41 +45,39 @@ return function(App $app) {
                 ->withStatus(302);
     });
 
-    $app->post('/user/signup', function(Request $request, Response $response) {
+    $app->post('/user/signup', function() {
 
-        // REQUEST: Get user login data
-        $inputUserData = $request->getParsedBody();
+        // GET & DECODE: User request data
+        $inputUserData = json_decode(file_get_contents("php://input"), true);
 
-        // VALIDATE: username & password
+        // CATCH: Signup exceptions
         try {
-            $validatedUsername = validateUsername($inputUserData['username']);
-            $validatedPassword = validatePassword($inputUserData['password']);
-        } catch (Exception $error_message) {
-            $response->getBody()->write(json_encode(['message'=>$error_message->getMessage()]));
-            return $response->withStatus(400);
+            signup($inputUserData);
+        }
+        catch (Exception $error_message) {
+
+            // CONFLICT: User with username exists
+            if ($error_message->getMessage() == 'user with same username exists') {
+                http_response_code(409);
+                echo json_encode(['error'=>$error_message->getMessage()]);
+                exit;
+            }
+
+            http_response_code(400);
+            echo json_encode(['error'=>$error_message->getMessage()]);
+            exit;
+
+        }
+        catch (TypeError) { // Invalid JSON format
+            http_response_code(400);
+            echo json_encode(["error" => "invalid JSON format"]);
+            exit;
         }
 
-        // User login result
-        $signupResult = signup([
-            'username'=>$validatedUsername,
-            'display_name'=>$inputUserData['names'],
-            'email'=>$inputUserData['email'],
-            'password'=>$validatedPassword,
-        ]);
-
-        $URL_BASENAME = $_ENV['URL_BASENAME'];
-
-        // CONDITION: User could not signup, let user retry signup
-        if(!$signupResult) {
-            return $response
-                ->withHeader('Location', "$URL_BASENAME/signup")
-                ->withStatus(302);
-        }
-
-        // User signed up successfully, redirect to login page
-        return $response
-                ->withHeader('Location', "$URL_BASENAME/login")
-                ->withStatus(302);
+        // User signup succeeded
+        http_response_code(200);
+        echo json_encode(['message'=>'signup succeeded']);
+        exit;
     });
 
 };

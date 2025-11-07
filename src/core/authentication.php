@@ -23,17 +23,33 @@ function getDB(): PDO {
 }
 
 
-function signup(array $data): array {
+/**
+ * @param array $data User signup data.
+ * @throws Exception
+ */
+function signup(array $data) :void {
 
     // MYSQL: Open database connection
     $db = getDB();
 
-    // ENSURE: All required fields/columns exist
-    $required = ['username','display_name','email','password'];
-    foreach ($required as $field) {
-        if (empty($data[$field])) {
-            return ['status' => false, 'message' => "missing field: $field"];
-        }
+    // ENSURE: User request data has required keys
+    try {
+        validateRequiredKeys($data, [
+            'username',
+            'display_name',
+            'email',
+            'password'
+        ]);
+    } catch (Exception $error_message) {
+        throw new Exception($error_message->getMessage());
+    }
+
+    // VALIDATE: Username & password
+    try {
+        validateUsername($data['username']);
+        validatePassword($data['password']);
+    } catch (Exception $error_message) {
+        throw new Exception($error_message->getMessage());
     }
 
     // MYSQL: Query for user with same username
@@ -42,7 +58,7 @@ function signup(array $data): array {
 
     // ENSURE: No user with same username exists
     if ($stmt->fetch()) {
-        return ['status' => false, 'message' => 'user with same username exists'];
+        throw new Exception('user with same username exists');
     }
 
     // GENERATE: User ID
@@ -60,8 +76,6 @@ function signup(array $data): array {
         $data['email'],
         $hash
     ]);
-
-    return ['status' => true, 'message' => 'Account created successfully'];
 }
 
 
