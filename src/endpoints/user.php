@@ -12,7 +12,7 @@ require __DIR__ . '/../core/validators/vrequest.php';
 
 return function(App $app) {
 
-    $app->post('/user/login', function(Request $request, Response $response) {
+    $app->post('/user/login', function() {
 
         // GET & DECODE: User request data
         $inputUserData = json_decode(file_get_contents("php://input"), true);
