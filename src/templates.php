@@ -127,7 +127,6 @@ return function(App $app) {
         $token = getTokenFromCookie($request);
 
         $URL_BASENAME = $_ENV['URL_BASENAME'];
-        $ROUTE_TITLE = 'Store';
 
         // CORE: User authentication results
         $userData = authenticate($token);
