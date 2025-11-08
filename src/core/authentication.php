@@ -111,8 +111,13 @@ function login(array $data): array {
     $stmt->execute([$username]);
     $user = $stmt->fetch();
 
-    // VALIDATE: user password with database hashed password
-    if (!$user || !password_verify($password, $user['password'])) {
+    // ENSURE: Account with matching username exists
+    if (!$user) {
+        throw new Exception('incorrect username');
+    }
+
+    // COMPARISON: User login-password with database hashed-password
+    if (!password_verify($password, $user['password'])) {
         throw new Exception('incorrect password');
     }
 
