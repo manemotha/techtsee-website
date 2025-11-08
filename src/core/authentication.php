@@ -1,8 +1,6 @@
 <?php
 declare(strict_types=1);
 
-use Psr\Http\Message\ServerRequestInterface as Request;
-
 
 function getDB(): PDO {
     static $db = null;
@@ -142,10 +140,21 @@ function login(array $data): array {
 }
 
 
-function authenticate($token): ?array {
+/**
+ * @param ?string $token Token to authenticate with.
+ * <br> Token is nullable because the website is public (works for unauthorized users).
+ * @return array|null Database user account data after authorization or null if authorization failed.
+ * @throws Exception
+ */
+function authenticate(?string $token): ?array {
+
+    // MYSQL: Open database connection
     $db = getDB();
+
+    // Token is empty (not usable)
     if (!$token) return null;
 
+    // MYSQL: Query for token with matching user_id, token and token is active and hasn't expired
     $stmt = $db->prepare("
         SELECT U.* 
         FROM users AS U 
@@ -156,7 +165,12 @@ function authenticate($token): ?array {
     $stmt->execute([$token]);
     $user = $stmt->fetch();
 
-    if ($user) return $user;
+    // No user found with valid matching token
+    if (!$user) return null;
 
-    return null;
+    // Remove secret keys from user data for security purposes
+    unset($user['password']);
+
+    // User authentication succeeded
+    return $user;
 }
