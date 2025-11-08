@@ -6,6 +6,8 @@ use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
 use DI\Container;
 use Dotenv\Dotenv;
+use Slim\Psr7\Response;
+use Slim\Exception\HttpNotFoundException;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -35,4 +37,18 @@ $app->add(TwigMiddleware::create($app, $twig));
 // Internal service routes
 (require __DIR__ . '/src/endpoints/user.php')($app);
 
+// Handle exceptions for unknown/unhandled endpoints
+$errorMiddleware = $app->addErrorMiddleware(true, true, true);
+$errorMiddleware->setErrorHandler(
+    HttpNotFoundException::class,
+    function ($request) {
+        global $twig;
+        return $twig->render(new Response(), '/error_handlers/404.twig', [
+            'URL_BASENAME'=>$_ENV['URL_BASENAME'],
+            'request'=>$request
+        ]);
+    }
+);
+
+// Run application
 $app->run();
