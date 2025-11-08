@@ -22,8 +22,19 @@ return function(App $app) {
             $userData = login($inputUserData);
         }
         catch (Exception $error_message) {
+
+            // Exception message
+            $error_message = $error_message->getMessage();
+
+            // SECURITY: Hide which credential is incorrect
+            if ($error_message == 'incorrect password' || $error_message == 'incorrect username') {
+                http_response_code(400);
+                echo json_encode(['error'=>'incorrect credentials']);
+                exit;
+            }
+
             http_response_code(400);
-            echo json_encode(['error'=>$error_message->getMessage()]);
+            echo json_encode(['error'=>$error_message]);
             exit;
         }
         catch (TypeError) { // Invalid JSON format
