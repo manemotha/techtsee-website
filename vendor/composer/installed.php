@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'techtsee/website',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-dev',
+        'version' => 'dev-dev',
+        'reference' => 'ec943fd0c4ca68499aa5c02306c722b7d5215c68',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -191,9 +191,9 @@
             'dev_requirement' => false,
         ),
         'slim/psr7' => array(
-            'pretty_version' => '1.7.1',
-            'version' => '1.7.1.0',
-            'reference' => 'fe98653e7983010aa85c1d137c9b9ad5a1cd187d',
+            'pretty_version' => '1.8.0',
+            'version' => '1.8.0.0',
+            'reference' => '76e7e3b1cdfd583e9035c4c966c08e01e45ce959',
             'type' => 'library',
             'install_path' => __DIR__ . '/../slim/psr7',
             'aliases' => array(),
@@ -263,9 +263,9 @@
             'dev_requirement' => false,
         ),
         'techtsee/website' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-dev',
+            'version' => 'dev-dev',
+            'reference' => 'ec943fd0c4ca68499aa5c02306c722b7d5215c68',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
