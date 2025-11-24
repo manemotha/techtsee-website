@@ -8,6 +8,9 @@ $content-font-size: 15px;
 $title-font-size: 20px;
 $link-text-font-size: 12px;
 
+// TEXT
+$text-line-height: 1.5;
+
 // COLORS
 $border-color: #E4E4E4;
 $hover-border-color: #a4b1e5;
@@ -32,6 +35,9 @@ $primary-color: #2A3FCA;
     --content-font-size: #{$content-font-size};
     --title-font-size: #{$title-font-size};
     --linkT-text-font-size: #{$link-text-font-size};
+
+    /* TEXT */
+    --text-line-height: #{$text-line-height};
 
     /* COLORS */
     --border-color: #{$border-color};

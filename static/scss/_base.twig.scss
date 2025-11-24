@@ -41,6 +41,7 @@
 
 // copyright & address text
 .address {
+  line-height: var(--text-line-height);
   font-size: $link-text-font-size;
   font-family: Roboto-Regular, sans-serif;
   font-weight: normal;

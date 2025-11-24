@@ -35,6 +35,7 @@
     font-family: Roboto-Regular, sans-serif;
     font-size: $content-font-size;
     color: $secondary-text;
+    line-height: var(--text-line-height);
 }
 .tag {
     font-family: Roboto-Regular, sans-serif;
@@ -68,6 +69,7 @@
     color: $title-text;
     max-width: 270px;
     margin-bottom: 60px;
+    line-height: var(--text-line-height);
 }
 /* SERVICES_TABLE */
 .services-tables-container {
